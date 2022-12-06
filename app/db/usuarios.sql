@@ -28,12 +28,30 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuarios` (
+CREATE TABLE `usuarios` 
+(
   `id` int(11) NOT NULL,
   `usuario` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `clave` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `fechaBaja` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `ventas` 
+(
+  `id` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `nombre_crypto` varchar(25) COLLATE utf8_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+CREATE TABLE `cryptoMonedas` 
+(
+  `id` int(11) NOT NULL,
+  `nombre` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
+  `precio` float NOT NULL,
+  `foto` text COLLATE utf8_spanish2_ci NOT NULL,
+  `nacionalidad` varchar(25) COLLATE utf8_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -45,24 +63,43 @@ INSERT INTO `usuarios` (`id`, `usuario`, `clave`, `fechaBaja`) VALUES
 (3, 'jorge', 'sda2s2f332f2', NULL);
 
 --
--- Índices para tablas volcadas
+-- Índices para tablas
 --
-
+ALTER TABLE `criptomonedas`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre ` (`nombre`);
 --
--- Indices de la tabla `usuarios`
+ALTER TABLE `ventas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_crypto_venta` (`nombre_crypto`);
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `usuarios`
+-- AUTO_INCREMENT de las tablas
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+ALTER TABLE `ventas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+ALTER TABLE `criptomonedas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+
+
+ALTER TABLE `ventas`
+  ADD CONSTRAINT `FK_crypto_venta` FOREIGN KEY (`nombre_crypto`) REFERENCES `criptomonedas` (`nombre`) ON DELETE CASCADE ON UPDATE CASCADE,
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
