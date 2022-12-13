@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Currency.php';
+require_once 'criptomonedas.php';
 
 class UploadManager
 {
@@ -11,7 +11,8 @@ class UploadManager
     private $_newFileName;
     private $_pathToSaveImage;
 
-    public function __construct($dirToSave){
+    public function __construct($dirToSave)
+    {
         $this->setDirectoryToSave($dirToSave);
         self::createDirIfNotExists($dirToSave);
     }
