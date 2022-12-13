@@ -156,7 +156,8 @@ class Sale {
         return $objDataAccess->getLastInsertedId();
     }
 
-    public static function updateEntity($entity){
+    public static function updateEntity($entity)
+    {
         $objDataAccess = DataAccess::getInstance();
         $sql = "UPDATE `sales` 
         SET date = :date, crypto_name = :crypto_name, amount = :amount, customer = :customer, user = :user, image = :image 
@@ -175,7 +176,8 @@ class Sale {
     }
 
 
-    public static function deleteEntity($entity){
+    public static function deleteEntity($entity)
+    {
         $objDataAccess = DataAccess::getInstance();
         $sql = "DELETE FROM `sales` WHERE id = :id";
         $query = $objDataAccess->prepareQuery($sql);
@@ -186,7 +188,8 @@ class Sale {
     }
 
 
-    public static function getEntityById($id){
+    public static function getEntityById($id)
+    {
         $objDataAccess = DataAccess::getInstance();
         $sql = "SELECT * FROM `sales` WHERE id = :id";
         $query = $objDataAccess->prepareQuery($sql);
@@ -201,7 +204,8 @@ class Sale {
         return $entity;
     }
 
-    public static function getAllEntities(){
+    public static function getAllEntities()
+    {
         $objDataAccess = DataAccess::getInstance();
         $sql = "SELECT * FROM `sales`";
         $query = $objDataAccess->prepareQuery($sql);
@@ -211,7 +215,8 @@ class Sale {
         return $entities;
     }
 
-    public static function getEntitiesByCountryBetween($country, $start, $end){
+    public static function getEntitiesByCountryBetween($country, $start, $end)
+    {
         $objDataAccess = DataAccess::getInstance();
         $sql = "SELECT s.id, s.date, s.crypto_name, s.amount, s.customer, s.user, s.image FROM `sales` AS s
         INNER JOIN `currencies` AS c

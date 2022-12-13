@@ -53,7 +53,8 @@ $app->group('/cryptocurrency', function (RouteCollectorProxy $group) {
       ->add(\MWAccess::class . ':isAdmin');
   });
 
-$app->group('/sale', function (RouteCollectorProxy $group) {
+$app->group('/sale', function (RouteCollectorProxy $group) 
+{
     $group->get('/getAll/', \SaleController::class . ':GetAll');
     $group->get('/getAll/{country}/{from}/{to}', \SaleController::class . ':GetAllByCountry')
       ->add(\MWAccess::class . ':isAdmin');
