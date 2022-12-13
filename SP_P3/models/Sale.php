@@ -1,32 +1,5 @@
 <?php
-/**
- * MIT License
- *
- * Copyright (C) 2021 <FacuFalcone - CaidevOficial>
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *
- * You should have received a copy of the MIT license
- * along with this program.  If not, see <https://opensource.org/licenses/MIT>.
- *
- * @author Facundo Falcone <CaidevOficial> 
- */
+
 
 require_once './db/DataAccess.php';
 
@@ -55,130 +28,69 @@ class Sale {
 
     //--- Getters ---//
 
-    /**
-     * Gets the id of the Entity.
-     *
-     * @return int The id of the Entity.
-     */
+
     public function getId() {
         return $this->id;
     }
 
-    /**
-     * Gets the date of the Entity.
-     *
-     * @return date The date of the Entity.
-     */
+
     public function getDate() {
         return $this->date;
     }
 
-    /**
-     * Gets the name of the Crypto of the Entity.
-     *
-     * @return string The name of the Crypto of the Entity.
-     */
+  
     public function getCryptoName() {
         return $this->crypto_name;
     }
 
-    /**
-     * Gets the amount of the Entity.
-     *
-     * @return float The amount of the Entity.
-     */
+
     public function getAmount() {
         return $this->amount;
     }
 
-    /**
-     * Gets the customer of the Entity.
-     *
-     * @return string The customer of the Entity.
-     */
     public function getCustomer() {
         return $this->customer;
     }
 
-    /**
-     * Gets the user of the Entity.
-     *
-     * @return string The user of the Entity.
-     */
+
     public function getUser() {
         return $this->user;
     }
 
-    /**
-     * Gets the image of the Entity.
-     *
-     * @return string The image of the Entity.
-     */
+ 
     public function getImage() {
         return $this->image;
     }
 
     //--- Setters ---//
 
-    /**
-     * Sets the id of the Entity.
-     *
-     * @param int $id The id of the Entity.
-     */
+ 
     public function setId($id) {
         $this->id = $id;
     }
 
-    /**
-     * Sets the date of the Entity.
-     *
-     * @param date $date The date of the Entity.
-     */
+ 
     public function setDate($date) {
         $this->date = $date;
     }
 
-    /**
-     * Sets the name of the Crypto of the Entity.
-     *
-     * @param string $crypto_name The name of the Crypto of the Entity.
-     */
     public function setCryptoName($crypto_name) {
         $this->crypto_name = $crypto_name;
     }
 
-    /**
-     * Sets the amount of the Entity.
-     *
-     * @param float $amount The amount of the Entity.
-     */
     public function setAmount($amount) {
         $this->amount = $amount;
     }
 
-    /**
-     * Sets the customer of the Entity.
-     *
-     * @param string $customer The customer of the Entity.
-     */
     public function setCustomer($customer) {
         $this->customer = $customer;
     }
 
-    /**
-     * Sets the user of the Entity.
-     *
-     * @param string $user The user of the Entity.
-     */
     public function setUser($user) {
         $this->user = $user;
     }
 
-    /**
-     * Sets the image of the Entity.
-     *
-     * @param string $image The image of the Entity.
-     */
+    
     public function setImage($image) {
         $this->image = $image;
     }
@@ -189,10 +101,7 @@ class Sale {
         return $date;
     }
 
-    /**
-     * Prints the info of the query as a table.
-     * @param array $listObjects Array of the objects.
-     */
+
     public static function printDataAsTable($listObjects){
         echo "<table border='2'>";
         echo '<caption>Sales List</caption>';
@@ -211,9 +120,7 @@ class Sale {
         echo "</table>" ;
     }
 
-    /**
-     * Prints the info of the query as a table.
-     */
+
     public function printSingleEntityAsTable(){
         echo "<table border='2'>";
         echo '<caption>Sales List</caption>';
@@ -232,10 +139,7 @@ class Sale {
 
     //--- PDO Methods ---//
 
-    /**
-     * Inserts an entity.
-     * @return int The id of the inserted entity.
-     */
+
     public static function insertEntity($entity){
         $objDataAccess = DataAccess::getInstance();
         $sql = "INSERT INTO `sales` (date, crypto_name, amount, customer, user, image) 
@@ -252,10 +156,6 @@ class Sale {
         return $objDataAccess->getLastInsertedId();
     }
 
-    /**
-     * Updates an entity.
-     * @return int The number of rows affected.
-     */
     public static function updateEntity($entity){
         $objDataAccess = DataAccess::getInstance();
         $sql = "UPDATE `sales` 
@@ -274,10 +174,7 @@ class Sale {
         return $query->rowCount();
     }
 
-    /**
-     * Deletes an entity.
-     * @return int The number of rows affected.
-     */
+
     public static function deleteEntity($entity){
         $objDataAccess = DataAccess::getInstance();
         $sql = "DELETE FROM `sales` WHERE id = :id";
@@ -288,10 +185,7 @@ class Sale {
         return $query->rowCount();
     }
 
-    /**
-     * Gets an entity by id.
-     * @return Sale The entity.
-     */
+
     public static function getEntityById($id){
         $objDataAccess = DataAccess::getInstance();
         $sql = "SELECT * FROM `sales` WHERE id = :id";
